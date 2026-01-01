@@ -7,7 +7,7 @@ class Gcx < Formula
   url "https://github.com/cirrus-tools/gcx/archive/refs/tags/v1.2.1.tar.gz"
   sha256 "937dae96de75f4a3f24c7b9b2edc9206843a14ecabdb9f88a360234c7f544dd3"
   license "MIT"
-  version "1.2.0"
+  version "1.2.1"
   head "https://github.com/cirrus-tools/gcx.git", branch: "main"
 
   depends_on "yq"

@@ -54,6 +54,7 @@ echo ""
 echo -e "${BLUE}Updating ${FORMULA}...${NC}"
 sed -i '' "s|/tags/v[0-9]*\.[0-9]*\.[0-9]*\.tar\.gz|/tags/v${VERSION}.tar.gz|" "$FORMULA"
 sed -i '' "s/sha256 \".*\"/sha256 \"${SHA256}\"/" "$FORMULA"
+sed -i '' "s/version \"[0-9]*\.[0-9]*\.[0-9]*\"/version \"${VERSION}\"/" "$FORMULA"
 
 # Show diff
 echo -e "${BLUE}Changes:${NC}"
