@@ -10,6 +10,7 @@ class ClaudeWarp < Formula
   version "0.1.0"
   head "https://github.com/cirrus-tools/claude-warp.git", branch: "main"
 
+  depends_on "gum"
   depends_on "jq"
   depends_on "node"
 
