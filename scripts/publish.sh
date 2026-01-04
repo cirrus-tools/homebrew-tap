@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# publish.sh - Update homebrew-tap formula with new gcx version
-# Usage: ./scripts/publish.sh <version>
-# Example: ./scripts/publish.sh 1.1.0
+# publish.sh - Update homebrew-tap formula with new version
+# Usage: ./scripts/publish.sh <formula> <version>
+# Example: ./scripts/publish.sh gcx 1.2.0
+#          ./scripts/publish.sh claude-warp 0.1.0
 
 set -e
 
@@ -15,17 +16,31 @@ YELLOW='\033[0;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
-VERSION="${1:-}"
-if [ -z "$VERSION" ]; then
-    echo -e "${RED}Usage: ./scripts/publish.sh <version>${NC}"
-    echo "Example: ./scripts/publish.sh 1.1.0"
+FORMULA_NAME="${1:-}"
+VERSION="${2:-}"
+
+if [ -z "$FORMULA_NAME" ] || [ -z "$VERSION" ]; then
+    echo -e "${BLUE}Usage: ./scripts/publish.sh <formula> <version>${NC}"
+    echo ""
+    echo "Examples:"
+    echo "  ./scripts/publish.sh gcx 1.2.0"
+    echo "  ./scripts/publish.sh claude-warp 0.1.0"
+    echo ""
+    echo "Available formulas:"
+    ls -1 Formula/*.rb | xargs -I {} basename {} .rb | sed 's/^/  /'
     exit 1
 fi
 
-TARBALL_URL="https://github.com/cirrus-tools/gcx/archive/refs/tags/v${VERSION}.tar.gz"
-FORMULA="Formula/gcx.rb"
+FORMULA="Formula/${FORMULA_NAME}.rb"
 
-echo -e "${BLUE}Publishing gcx v${VERSION} to homebrew-tap${NC}"
+if [ ! -f "$FORMULA" ]; then
+    echo -e "${RED}Formula not found: ${FORMULA}${NC}"
+    exit 1
+fi
+
+TARBALL_URL="https://github.com/cirrus-tools/${FORMULA_NAME}/archive/refs/tags/v${VERSION}.tar.gz"
+
+echo -e "${BLUE}Publishing ${FORMULA_NAME} v${VERSION}${NC}"
 echo ""
 
 # Download and calculate sha256
@@ -71,14 +86,14 @@ fi
 
 # Commit and push
 git add "$FORMULA"
-git commit -m "gcx: update to v${VERSION}"
+git commit -m "${FORMULA_NAME}: update to v${VERSION}"
 git push origin main
 
 echo ""
-echo -e "${GREEN}Published gcx v${VERSION} to homebrew-tap${NC}"
+echo -e "${GREEN}Published ${FORMULA_NAME} v${VERSION}${NC}"
 echo ""
 echo -e "${YELLOW}Users can now install/upgrade:${NC}"
 echo "  brew tap cirrus-tools/tap"
-echo "  brew install gcx"
-echo "  brew upgrade gcx"
+echo "  brew install ${FORMULA_NAME}"
+echo "  brew upgrade ${FORMULA_NAME}"
 echo ""
