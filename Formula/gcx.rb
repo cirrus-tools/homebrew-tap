@@ -4,10 +4,10 @@
 class Gcx < Formula
   desc "GCloud Context Switcher - Quick switch for GCP orgs, accounts, projects"
   homepage "https://github.com/cirrus-tools/gcx"
-  url "https://github.com/cirrus-tools/gcx/archive/refs/tags/v1.2.4.tar.gz"
-  sha256 "4b16506029d8a6ee116da53c13c2552100b9ea13ede5235f421dd4c2e8e88c54"
+  url "https://github.com/cirrus-tools/gcx/archive/refs/tags/v1.3.0.tar.gz"
+  sha256 "e7a61b8e86ef2c06901fe8953f6a3f1e1f0fd5f5d45ab4d12e07f21fc3455121"
   license "MIT"
-  version "1.2.4"
+  version "1.3.0"
   head "https://github.com/cirrus-tools/gcx.git", branch: "main"
 
   depends_on "yq"
