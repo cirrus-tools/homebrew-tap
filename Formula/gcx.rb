@@ -15,13 +15,7 @@ class Gcx < Formula
 
   def install
     bin.install "bin/gcx.sh" => "gcx"
-    (lib/"gcx").install "lib/gcx-setup.sh"
-    (lib/"gcx").install "lib/gcx-adc.sh"
-    (lib/"gcx").install "lib/gcx-vm.sh"
-    (lib/"gcx").install "lib/gcx-run.sh"
-    (lib/"gcx").install "lib/gcx-network.sh"
-    (lib/"gcx").install "lib/gcx-sql.sh"
-    (lib/"gcx").install "lib/gcx-gke.sh"
+    (lib/"gcx").install Dir["lib/*.sh"]
     bash_completion.install "completions/gcx.bash" => "gcx"
     zsh_completion.install "completions/_gcx"
   end
