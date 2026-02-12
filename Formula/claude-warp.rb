@@ -4,10 +4,10 @@
 class ClaudeWarp < Formula
   desc "Fast model switching for Claude Code - switch when quota runs out"
   homepage "https://github.com/cirrus-tools/claude-warp"
-  url "https://github.com/cirrus-tools/claude-warp/archive/refs/tags/v0.2.1.tar.gz"
-  sha256 "5bd827eec0061acc8569dc22f25ff0894caca58c16b8073550daaead20feed26"
+  url "https://github.com/cirrus-tools/claude-warp/archive/refs/tags/v0.3.0.tar.gz"
+  sha256 "560855b6c00f61cf28f242e06e14e185e2ca74b8f7bf9faaa8da365a8583954c"
   license "MIT"
-  version "0.2.1"
+  version "0.3.0"
   head "https://github.com/cirrus-tools/claude-warp.git", branch: "main"
 
   depends_on "gum"
